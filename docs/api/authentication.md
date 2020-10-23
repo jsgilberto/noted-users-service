@@ -64,6 +64,6 @@ You can also verify if a token is valid making a call to the following endpoint:
 
 ```json
 {
-    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```

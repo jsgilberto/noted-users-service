@@ -9,8 +9,9 @@ from .users.views import UserViewSet, UserCreateViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    TokenVerifyView
+    # TokenVerifyView
 )
+from .users.jwt.views import TokenVerifyView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
