@@ -67,3 +67,12 @@ You can also verify if a token is valid making a call to the following endpoint:
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
+
+In return, it responds with the user id extracted from the JSON Web Token:
+
+**Response**:
+```json
+{
+    "user_id": "91829874-918491-49735..."
+}
+```
