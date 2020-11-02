@@ -1,29 +1,33 @@
 version: '2'
 
 services:
-  postgres:
+  users_db:
     image: postgres:11.6
     env_file:
       - db.env
-  web:
+    networks:
+      - noted-resource-manager_default
+  users:
     restart: always
     environment:
       - DJANGO_SECRET_KEY=local
     env_file:
       - db.env
-    image: web
+    image: users
     build: ./
     command: >
       bash -c "python wait_for_postgres.py &&
                python ./manage.py makemigrations &&
                python ./manage.py migrate &&
-               python ./manage.py runserver 0.0.0.0:8000"
+               python ./manage.py runserver 0.0.0.0:8100"
     volumes:
       - ./:/code
     ports:
-      - "8000:8000"
+      - "8100:8100"
     depends_on:
-      - postgres
+      - users_db
+    networks:
+      - noted-resource-manager_default
   documentation:
     restart: always
     build: ./
@@ -31,4 +35,10 @@ services:
     volumes:
       - ./:/code
     ports:
-      - "8001:8001"
+      - "8101:8001"
+    networks:
+      - noted-resource-manager_default
+
+networks:
+  noted-resource-manager_default:
+    external: true
